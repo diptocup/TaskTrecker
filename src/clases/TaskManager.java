@@ -1,5 +1,7 @@
 package clases;
 
+import Enum.Category;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -11,7 +13,7 @@ public class TaskManager {
     private final List<Task> tasks;
 
     public TaskManager() {
-        this.tasks = new ArrayList<Task>();
+        this.tasks = new ArrayList<>();
     }
 
     public void addTask(Task task) {
@@ -29,7 +31,7 @@ public class TaskManager {
     public void saveTasks(String fileName) throws IOException {
         FileWriter fileWriter = new FileWriter(fileName);
         for (Task task : tasks) {
-            fileWriter.write(task.toString());
+            fileWriter.write(task.toString() + "\n");
         }
         fileWriter.close();
     }
@@ -37,9 +39,10 @@ public class TaskManager {
     public void loadTasks(String fileName) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
         String line;
+        tasks.clear();
         while ((line = bufferedReader.readLine()) != null) {
             String[] tokens = line.split(",");
-            Task task = new Task(tokens[0], tokens[1], Integer.parseInt(tokens[2]));
+            Task task = new Task(tokens[0], tokens[1], Integer.parseInt(tokens[2]), Category.valueOf(tokens[3]));
             this.tasks.add(task);
         }
         bufferedReader.close();

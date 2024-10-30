@@ -1,3 +1,4 @@
+import Enum.Category;
 import clases.Task;
 import clases.TaskManager;
 
@@ -28,7 +29,9 @@ public class Main {
                     String dueDate = scanner.nextLine();
                     System.out.println("Введите приоритет задачи (1-3)");
                     int priority = scanner.nextInt();
-                    Task task = new Task(taskName, dueDate, priority);
+                    System.out.println("В какую категорию входит ваша задача? (WORK, PERSONAL, EDUCATION)");
+                    Category category = Category.valueOf(scanner.next().toUpperCase());
+                    Task task = new Task(taskName, dueDate, priority, category);
                     manager.addTask(task);
                     break;
                 case 2:
@@ -43,7 +46,7 @@ public class Main {
                     break;
                 case 4:
                     try {
-                        manager.saveTasks("File//task.txt");
+                        manager.saveTasks("task.txt");
                     } catch (IOException e) {
                         System.out.println("Ошибка сохраниения");
                     }

@@ -1,14 +1,18 @@
 package clases;
 
+import Enum.Category;
+
 public class Task {
     private String description;
     private String dueDate;
     private int priority;
+    private Category category;
 
-    public Task(String description, String task, int priority) {
+    public Task(String description, String task, int priority, Category category) {
         this.description = description;
         this.dueDate = task;
         this.priority = priority;
+        this.category = category;
     }
 
     public String getDescription() {
@@ -35,8 +39,16 @@ public class Task {
         this.priority = priority;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
-        return "Task [Описание задачи = " + description + ", Дата = " + dueDate + ", Приоретит = " + priority + "]";
+        return "Task [Описание задачи = " + description + ", Дата = " + dueDate + ", Преоритет = " + priority + ", Категория = " + category + "]";
     }
 }
